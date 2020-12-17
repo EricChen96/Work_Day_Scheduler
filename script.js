@@ -3,39 +3,36 @@ $(function () {
     var currentdayEl = $("#currentDay");
     currentdayEl.text(moment().format("MMM Do YY"));
 
+    //Retrieves current hour in 24 hour format and store as int. e.g. 3pm = 15
     var currentHourTime = parseInt(moment().format('k'));
 
-    //Change color
+    //Change color depending on time
     for (var hourCount = 9; hourCount < 18; hourCount++) {
-        var hourgrabEl = $("#hour-" + hourCount);
         if (hourCount < currentHourTime) {
-            hourgrabEl.attr("class", "row time-block past");
+            $("#hour-" + hourCount).attr("class", "row time-block past");
         }
         else if (hourCount === currentHourTime) {
-            hourgrabEl.attr("class", "row time-block present");
+            $("#hour-" + hourCount).attr("class", "row time-block present");
         }
         else {
-            hourgrabEl.attr("class", "row time-block future");                                                       
+            $("#hour-" + hourCount).attr("class", "row time-block future");
         }
     };
 
-    //Saving description
+    //Saving description with hour as key and description as value. Then save to local storage
     var descriptionArray = {};
     $(".saveBtn").on("click", function () {
-        var tempString = $(this.previousElementSibling).val();
-        var hourTemp = $(this).val();
-        descriptionArray[hourTemp] = tempString;
+        //$(this).val() returns 9 if save button for 9AM is pressed
+        //this.previousElementSibling refers to textarea
+        descriptionArray[$(this).val()] = $(this.previousElementSibling).val();
         localStorage.setItem("description", JSON.stringify(descriptionArray));
-        // console.log(descriptionArray[17]);
     });
 
     function displaySavedDescriptions() {
-        for(var hourCount = 9; hourCount < 18; hourCount++) {
-            if(descriptionArray[hourCount] !== undefined) {
-                // $(this.previousElementSibling).text(descriptionArray[hourCount]);
-                var hourgrabEl = $("#hour-" + hourCount);
-                console.log(descriptionArray[hourCount]);
-                hourgrabEl.$("textarea").val(descriptionArray[hourCount]);
+        for (var hourCount = 9; hourCount < 18; hourCount++) {
+            if (descriptionArray[hourCount] !== undefined) {
+                var descriptiongrabEl = $("#hour-" + hourCount + " textarea");
+                descriptiongrabEl.val(descriptionArray[hourCount]);
             }
         }
     }
