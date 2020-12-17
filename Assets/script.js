@@ -38,6 +38,17 @@ $(function () {
         }
     }
 
+    $(".resetBtn").on("click", reset);
+
+    function reset() {
+        descriptionArray = {};
+        localStorage.setItem("description", JSON.stringify(descriptionArray));
+        for (var hourCount = 9; hourCount < 18; hourCount++) {
+            var descriptiongrabEl = $("#hour-" + hourCount + " textarea");
+            descriptiongrabEl.val("");
+        }
+    }
+
     //Translates local storage variable and stores as object again. Then displays the saved information by calling displaySavedDescriptions()
     function init() {
         var storedDescriptions = JSON.parse(localStorage.getItem("description"));
