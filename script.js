@@ -28,6 +28,7 @@ $(function () {
         localStorage.setItem("description", JSON.stringify(descriptionArray));
     });
 
+    //Displays the saved descriptions from local storage on the correct "$hour-?? textarea"
     function displaySavedDescriptions() {
         for (var hourCount = 9; hourCount < 18; hourCount++) {
             if (descriptionArray[hourCount] !== undefined) {
@@ -37,6 +38,7 @@ $(function () {
         }
     }
 
+    //Translates local storage variable and stores as object again. Then displays the saved information by calling displaySavedDescriptions()
     function init() {
         var storedDescriptions = JSON.parse(localStorage.getItem("description"));
         if (storedDescriptions !== null) {
