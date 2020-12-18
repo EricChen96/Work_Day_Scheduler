@@ -2,8 +2,8 @@
 
 ![Work Day Scheduler Main Screen](./Assets/mainPage_screenshot.png)
 
-[Link to site](https://ericchen96.github.io/Code_Quiz/) <br>
-[Link to Github repository](https://github.com/EricChen96/Code_Quiz)
+[Link to site](https://ericchen96.github.io/Work_Day_Scheduler/) <br>
+[Link to Github repository](https://github.com/EricChen96/Work_Day_Scheduler)
 
 ## Installation
 
