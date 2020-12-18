@@ -1,7 +1,7 @@
 $(function () {
     //Adds current day to currentDay Head
     var currentdayEl = $("#currentDay");
-    currentdayEl.text(moment().format("MMM Do YY"));
+    currentdayEl.text(moment().format("MMM Do"));
 
     //Retrieves current hour in 24 hour format and store as int. e.g. 3pm = 15
     var currentHourTime = parseInt(moment().format('k'));
@@ -21,6 +21,7 @@ $(function () {
 
     //Saving description with hour as key and description as value. Then save to local storage
     var descriptionArray = {};
+
     $(".saveBtn").on("click", function () {
         //$(this).val() returns 9 if save button for 9AM is pressed
         //this.previousElementSibling refers to textarea
@@ -31,15 +32,17 @@ $(function () {
     //Displays the saved descriptions from local storage on the correct "$hour-?? textarea"
     function displaySavedDescriptions() {
         for (var hourCount = 9; hourCount < 18; hourCount++) {
-            if (descriptionArray[hourCount] !== undefined) {
+            if (descriptionArray[hourCount] !== null) {
                 var descriptiongrabEl = $("#hour-" + hourCount + " textarea");
                 descriptiongrabEl.val(descriptionArray[hourCount]);
             }
         }
-    }
+    };
 
+    //Reset button
     $(".resetBtn").on("click", reset);
 
+    //Resets everything back to nothing
     function reset() {
         descriptionArray = {};
         localStorage.setItem("description", JSON.stringify(descriptionArray));
@@ -47,7 +50,7 @@ $(function () {
             var descriptiongrabEl = $("#hour-" + hourCount + " textarea");
             descriptiongrabEl.val("");
         }
-    }
+    };
 
     //Translates local storage variable and stores as object again. Then displays the saved information by calling displaySavedDescriptions()
     function init() {

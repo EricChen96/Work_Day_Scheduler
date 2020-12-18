@@ -32,4 +32,4 @@ Added in a reset button that appears on the bottom of the page. When the user cl
 ```
 
 ## Partners
-Collaborated with Elijah Davis, Brandon Craig
+Collaborated with Elijah Davis and Brandon Craig
